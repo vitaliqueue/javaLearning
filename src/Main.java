@@ -1,3 +1,4 @@
+import java.awt.image.SampleModel;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,11 +11,8 @@ public class Main {
         sampleStack.push(true);
         sampleStack.push(12342434);
 
-        //for (Integer i = sampleStack.things.size()-1; i >= 0; i--) {
-        //  System.out.println(sampleStack.things.get(i));
-        //}
-        //System.out.println(sampleStack.things);
-
-        sampleStack.pop();
+        for (Integer i = sampleStack.things.size() - 1; i >= 0; i--) {
+            sampleStack.pop(i);
+        }
     }
 }
