@@ -15,17 +15,18 @@ public class Cash {
 
     public void serveCustomer (Customer customer) {
         if (customer.goodsAmount >= speed) {
-            customer.goodsAmount -= speed;
-            customersHeap -= speed;
+            customer.goodsAmount = customer.goodsAmount - speed;
+            customersHeap = customersHeap - speed;
+
         }
         else {
-            customersHeap -= customer.goodsAmount;
+            customersHeap = customersHeap - customer.goodsAmount;
             customer.goodsAmount = 0;
         }
 
         if (customer.goodsAmount == 0) {
             customer.isServed = true;
-            queue -= 1;
+            queue = queue - 1;
             System.out.println("(2)Another customer is served");
         }
     }

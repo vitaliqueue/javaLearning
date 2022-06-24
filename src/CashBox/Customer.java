@@ -6,11 +6,13 @@ public class Customer {
     public Integer type;
     public Integer goodsAmount;
     public boolean isServed;
+    public boolean isProceed;
     public Integer minArr = 0;
-    public Customer(Integer type, Integer goodsAmount, boolean isServed) {//0 - man, 1 - woman, 2 - child
+    public Customer(Integer type, Integer goodsAmount, boolean isServed, boolean isProceed) {//0 - man, 1 - woman, 2 - child
         this.type = type;
         this.goodsAmount = goodsAmount;
         this.isServed = isServed;
+        this.isServed = isProceed;
     }
 
     public Integer chooseCash (Cash[] cash){
@@ -25,7 +27,7 @@ public class Customer {
                             minArr = i;
                         }
                     }
-                    cash[minArr].queue += 1;
+                    cash[minArr].queue = cash[minArr].queue + 1;
                     cash[minArr].customersHeap += goodsAmount;
                     System.out.println("queue " + cash[minArr].queue + " heap " + cash[minArr].customersHeap);
                     return minArr;
@@ -35,7 +37,7 @@ public class Customer {
 
                     for (Integer i = 0; i < cash.length; i++)
                         if(cash[i].queue < minArr)   minArr = cash[i].queue;
-                    cash[minArr].queue += 1;
+                    cash[minArr].queue = cash[minArr].queue + 1;
                     cash[minArr].customersHeap += goodsAmount;
                     System.out.println("queue " + cash[minArr].queue + " heap " + cash[minArr].customersHeap);
                     return minArr;
@@ -45,7 +47,7 @@ public class Customer {
                     Integer randArr;
                     Random rand = new Random();
                     randArr = rand.nextInt(cash.length);
-                    cash[randArr].queue += 1;
+                    cash[randArr].queue = cash[randArr].queue + 1;
                     cash[randArr].customersHeap += goodsAmount;
                     System.out.println("queue " + cash[randArr].queue + " heap " + cash[randArr].customersHeap);
                     return randArr;

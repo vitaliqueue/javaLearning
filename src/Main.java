@@ -13,6 +13,7 @@ Random rand = new Random();
 Integer cashAmount = 2;
 Integer customersAmount = rand.nextInt(5) + 2; //
 Integer chosenCash = 0;
+boolean customerFlag = false;
 Cash[] cashArray = new Cash[cashAmount];
 Customer[] customerArray = new Customer[customersAmount];
 
@@ -27,7 +28,7 @@ System.out.println(" ");
 //создать покупателей
 System.out.println("Created customers (type: 0 - man, 1 - woman, 2 - child)");
 for(Integer i = 0; i < customersAmount; i++){
-    customerArray[i] = new Customer(rand.nextInt(3), rand.nextInt(3) + 2, false);//type: 0 - man, 1 - woman, 2 - child
+    customerArray[i] = new Customer(rand.nextInt(3), rand.nextInt(3) + 2, false, false);//type: 0 - man, 1 - woman, 2 - child
     System.out.println("Customer # " + i + " type " + customerArray[i].type + " goods amount " + customerArray[i].goodsAmount);
 }
 System.out.println(" ");
@@ -35,9 +36,13 @@ System.out.println(" ");
 
 for(Integer i = 0; i < cashAmount; i++) {
     for (Integer j = 0; j < customersAmount; j++) {
-        chosenCash = customerArray[j].chooseCash(cashArray);
+        if(!customerArray[j].isProceed) {
+            chosenCash = customerArray[j].chooseCash(cashArray);
+            customerArray[j].isProceed = true;
+        }
+        //chosenCash = customerArray[j].chooseCash(cashArray);
         System.out.println("\n" +"Customer # " + j + " with type " + customerArray[j].type + " chose the cash # " + chosenCash);
-        while (!customerArray[j].isServed){
+        if (!customerArray[j].isServed){
         cashArray[chosenCash].serveCustomer(customerArray[j]);
         }
     }
